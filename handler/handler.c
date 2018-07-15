@@ -150,14 +150,15 @@ void DestroyThread(ThreadPool* pool){
 	return;
 }
 int main(){
-	ThreadPool* pool=init(1,6);
+	ThreadPool* pool=init(2,6);
 	sleep(2);
 	int a[20];
 	for(int i=0;i<20;i++){
 		a[i]=i;
 		pool->AddTask(samp,a+i);
+		if(i==10) DestroyThread(pool);
 	}
-	DestroyThread(pool);
+	//DestroyThread(pool);
 	sleep(5);
 
 	return 0;
